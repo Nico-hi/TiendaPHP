@@ -1,0 +1,32 @@
+version: '3.9'            # Versión de sintaxis de Docker Compose
+services:                 # Sección principal: cada servicio es un contenedor
+  # ---- Servicio de MySQL ----
+  mysql:                  # Nombre del servicio (usas este nombre en los comandos)
+    image: mysql:8.0      # Imagen oficial de MySQL versión 8.0
+    container_name: mysql-db   # Nombre visible del contenedor en tu sistema
+    environment:          # Configura variables de entorno para el contenedor
+      MYSQL_ROOT_PASSWORD: rootpass     # Contraseña del usuario admin (root)
+      MYSQL_DATABASE: testdb            # Nombre de base de datos inicial que se creará
+      MYSQL_USER: user                 # Usuario "normal" creado al iniciar
+      MYSQL_PASSWORD: userpass         # Contraseña del usuario "normal"
+    ports:
+      - "3306:3306"        # Expone el puerto 3306 (MySQL) a tu máquina
+    volumes:
+      - mysql_data:/var/lib/mysql  # Persiste los datos en un volumen
+
+  # ---- Servicio de PostgreSQL ----
+  postgres:               # Nombre del servicio (usas este nombre en los comandos)
+    image: postgres:15    # Imagen oficial de PostgreSQL versión 15
+    container_name: postgres-db  # Nombre visible del contenedor en tu sistema
+    environment:
+      POSTGRES_DB: testdb         # Nombre de base de datos inicial que se creará
+      POSTGRES_USER: user         # Usuario "normal" creado al iniciar
+      POSTGRES_PASSWORD: userpass # Contraseña del usuario "user" (también del admin)
+    ports:
+      - "5432:5432"        # Expone el puerto 5432 (PostgreSQL) a tu máquina
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Persiste los datos en un volumen
+
+volumes:                   # Define los volúmenes que persisten los datos
+  mysql_data:              # Volumen para la base de datos de MySQL
+  postgres_data:           # Volumen para la base de datos de PostgreSQL

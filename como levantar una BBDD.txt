@@ -1,0 +1,71 @@
+usamos el docker compose . yml 
+teniendo las imagenes de docker ya puestas en el YML lo inicias , para hacer la descarga de las imagenes
+docker compose up mysql (el nombre del yml de la parte de MySQL "nombre del docker")
+docker compose up postgres (el nombre del yml de la parte de postgreSQL "nombre del docker")
+-- lo mismo pasara para iniciarlas con 
+docker compose start (nombre del docker)
+-- lo mismo pasara para apagarlas con 
+docker compose stop (nombre del docker)
+
+
+-- si quieres usar la BBDD de My SQL en terminal usas 
+
+MySQL CLI (mysql)
+
+Instalación:
+    sudo apt-get update
+    sudo apt-get install mysql-client
+
+    SI USAS DEBIAN COMO YO 
+    sudo apt update
+    sudo apt install default-mysql-client
+    
+
+
+Conexión a un contenedor Docker:
+Por ejemplo, si tienes el servicio “mysql” expuesto en el puerto 3306:
+    mysql -h 127.0.0.1 -P 3306 -u user -p
+    
+    El parámetro -h ( el host en estos casos es localhost) , -u (es el usuario), y -p ( te pedira el puerto ) te pedirá la contraseña.
+
+/* COMANDOS BASICOS
+
+Ver bases de datos:
+    SHOW DATABASES;
+Usar una base:
+    USE testdb;
+
+*/
+
+-- quieres hacer lo mismo mediante postgres
+
+
+PostgreSQL CLI (psql)
+
+Instalación:
+    sudo apt-get update
+    sudo apt-get install postgresql -client
+
+    SI USAS DEBIAN COMO YO 
+    sudo apt update
+    sudo apt install postgresql-client
+
+Conexión a un contenedor Docker:
+Si has expuesto PostgreSQL en el puerto 5432:
+    psql -h 127.0.0.1 -p 5432 -U user -d testdb
+        El parámetro -h ( el host en estos casos es localhost) , -u (es el usuario), -p ( te pedira el puerto ) y -d (la base de datos ) te pedirá la contraseña.
+Te pedirá la contraseña al conectarse.
+
+/* COMANDOS BASICOS
+
+Comandos típicos:
+
+Listar bases de datos:
+    \l
+
+Cambiar de base:
+    \c testdb
+*/
+
+si quieres actualizar el YML
+    docker compose down -v  

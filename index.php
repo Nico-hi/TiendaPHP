@@ -1,5 +1,5 @@
 <?php
-include 'JDBC/conexion.php';
+#include 'JDBC/conexion.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -18,6 +18,7 @@ include 'JDBC/conexion.php';
         <?php
         $sql1 = "select img_c_t from category where id_c=1 and name_c='TVs'";
         $result1 = $con->query($sql1);
+        echo "<img src='$sql1'>"
         ?>
     </div>
 
@@ -26,6 +27,7 @@ include 'JDBC/conexion.php';
         <?php
         $sql2 = "select img_c_t from category where id_c=2 and name_c='Smartphones'";
         $result2 = $con->query($sql2);
+        echo "<img src='$sql2'>"
         ?>
     </div>
 
@@ -34,6 +36,7 @@ include 'JDBC/conexion.php';
         <?php
         $sql3 = "select img_c_t from category where id_c=3 and name_c='PCs'";
         $result3 = $con->query($sql3);
+        echo "<img src='$sql3'>"
         ?>
     </div>
 
@@ -42,6 +45,7 @@ include 'JDBC/conexion.php';
         <?php
         $sql4 = "select img_c_t from category where id_c=4 and name_c='Laptops'";
         $result4 = $con->query($sql4);
+        echo "<img src='$sql4'>"
         ?>
     </div>
 
@@ -50,6 +54,7 @@ include 'JDBC/conexion.php';
         <?php
         $sql5 = "select img_c_t from category where id_c=5 and name_c='Consoles'";
         $result5 = $con->query($sql5);
+        echo "<img src='$sql5'>"
         ?>
     </div>
 

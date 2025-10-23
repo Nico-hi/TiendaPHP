@@ -2,7 +2,7 @@
 $name_server="localhost";
 $user_server="root";
 $passwd_server="Kawaii_456";
-$name_bbdd="virtual_store";
+$name_bbdd="ejercicio_php";
 
 $con=new mysqli($name_server,$user_server,$passwd_server,$name_bbdd);
 

@@ -1,24 +1,16 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $name_server="mysql";
-$ip_server="localhost";
-$user_server="user";
-$passwd_server="userpass";
+$ip_server="127.0.0.1";//localhost
+$user_server="root";
+$passwd_server="rootpass";
 $name_bbdd="virtual_store";
 // este es el problema
-$con=new mysqli($name_server,$user_server,$passwd_server,$name_bbdd,);
-var_dump($con);
+$con=new mysqli($ip_server,$user_server,$passwd_server,$name_bbdd);
 if($con->connect_error){
     die("hubo un error en la coneccion de la BBDD si quieres sabe cual es el error aqui esta --> ".$con->connect_error);
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>

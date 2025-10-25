@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-include __DIR__ . '../JDBC/conexion.php';
+include '../JDBC/conexion.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -12,13 +12,13 @@ include __DIR__ . '../JDBC/conexion.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda Virtual</title>
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body>
     <h1>TiendaVirtual</h1>
 
     <div>
-        <h3>TVs / Televisores</h3>
         <?php
 /*
         $sql1="select * from category;";
@@ -27,52 +27,66 @@ include __DIR__ . '../JDBC/conexion.php';
             while($fila + $result1 -> fetch_assoc()){
                 echo "{$fila['id_c']}";
             }}
-*/
-        
-
+*/ 
         $sql1 = "select img_c_t from category where id_c=1 and name_c='TVs'";
-        echo "hola";
         $result1 = $con->query($sql1);
-        var_dump($result1);
         $url1 = $result1->fetch_assoc();
-        var_dump($url1);
-        echo "<a href='devices.php?category=TVs'><img src='$url1[img_c_t]'></a>";
+        echo "<a href='devices.php?category=TVs'>
+        <h3>TVs / Televisores</h3>
+        <img src='$url1[img_c_t]'>
+        </a>";
         
         ?>
     </div>
     <div>
-        <h3>Smartphones / Movíles</h3>
         <?php
         $sql2 = "select img_c_t from category where id_c=2 and name_c='Smartphones'";
         $result2 = $con->query($sql2);
-        echo "<a href='devices.php?category=Smartphones'><img src='$result2'></a>";
+        $url2 = $result2->fetch_assoc();
+        
+        echo "<a href='devices.php?category=Smartphones'>
+        <h3>Smartphones / Movíles</h3>
+        <img src='$url2[img_c_t]'>
+        </a>";
         ?>
     </div>
 
     <div>
-        <h3>PCs / Ordenadores de escritorio</h3>
         <?php
         $sql3 = "select img_c_t from category where id_c=3 and name_c='PCs'";
         $result3 = $con->query($sql3);
-        echo "<a href='devices.php?category=PCs'><img src='$result3'></a>";
+        $url3 = $result3->fetch_assoc();
+
+        echo "<a href='devices.php?category=PCs'>
+        <h3>PCs / Ordenadores de escritorio</h3>
+        <img src='$url3[img_c_t]'>
+        </a>";
         ?>
     </div>
 
     <div>
-        <h3>Laptops / Portatiles</h3>
         <?php
         $sql4 = "select img_c_t from category where id_c=4 and name_c='Laptops'";
         $result4 = $con->query($sql4);
-        echo "<a href='devices.php?category=Laptops'><img src='$result4'></a>";
+        $url4 = $result4->fetch_assoc();
+
+        echo "<a href='devices.php?category=Laptops'>
+        <h3>Laptops / Portatiles</h3>
+        <img src='$url4[img_c_t]'>
+        </a>";
         ?>
     </div>
 
     <div>
-        <h3>Consoles / Consolas</h3>
         <?php
         $sql5 = "select img_c_t from category where id_c=5 and name_c='Consoles'";
         $result5 = $con->query($sql5);
-        echo "<a href='devices.php?category=Consoles'><img src='$result5'></a>";
+        $url5 = $result5->fetch_assoc();
+
+        echo "<a href='devices.php?category=Consoles'>
+        <h3>Consoles / Consolas</h3>
+        <img src='$url5[img_c_t]'>
+        </a>";
         ?>
     </div>
 

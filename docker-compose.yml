@@ -2,7 +2,7 @@ version: '3.9'            # Versión de sintaxis de Docker Compose
 services:                 # Sección principal: cada servicio es un contenedor
   # ---- Servicio de MySQL ----
   mysql:                  # Nombre del servicio (usas este nombre en los comandos)
-    image: mysql:8.0      # Imagen oficial de MySQL versión 8.0
+    image: mysql:latest     # Imagen oficial de MySQL versión 8.0
     container_name: mysql-db   # Nombre visible del contenedor en tu sistema
     environment:          # Configura variables de entorno para el contenedor
       MYSQL_ROOT_PASSWORD: rootpass     # Contraseña del usuario admin (root)
@@ -16,7 +16,7 @@ services:                 # Sección principal: cada servicio es un contenedor
 
   # ---- Servicio de PostgreSQL ----
   postgres:               # Nombre del servicio (usas este nombre en los comandos)
-    image: postgres:15    # Imagen oficial de PostgreSQL versión 15
+    image: postgres:latest    # Imagen oficial de PostgreSQL versión 15
     container_name: postgres-db  # Nombre visible del contenedor en tu sistema
     environment:
       POSTGRES_DB: testdb         # Nombre de base de datos inicial que se creará

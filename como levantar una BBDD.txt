@@ -69,3 +69,14 @@ Cambiar de base:
 
 si quieres actualizar el YML
     docker compose down -v  
+
+    ------------------------
+si tienes un SQL ya hecho pon este comando 
+dependiendo de la BBDD que uses 
+docker exec -i mysql-db mysql -u user -p testdb < /var/www/TiendaPHP/JDBC/BBDD.sql
+
+docker exec -i mysql-db mysql -u user -p testdb < /ruta/al/archivo/tablas.sql
+
+
+
+    ---------------------

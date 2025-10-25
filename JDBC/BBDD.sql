@@ -1,25 +1,33 @@
-create table virtual_store;
+create database if not exists virtual_store;
 use virtual_store;
 
 create table user(
-
+    id_u int auto_increment,
+    name_u varchar(30) not null,
+    lastname_u varchar(30),
+    email varchar(40) not null,
+    passwd_u varchar(225) not null,
+    date_registrer_u TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    primary key(id_u),
+    unique(email)
+    
 );
 
 create table category(
     id_c int auto_increment,
-    name_c varchar(20) not null
-    img_c_t text default "",
-    img_c_b blob, --esto es para almacenar la imgen en binarios
+    name_c varchar(20) not null,
+    img_c_t text ,
+    img_c_b blob,
     primary key(id_c)
 );
 
 create table product(
     id_p int auto_increment,
-    name_p varchar(20) not null,
+    name_p varchar(50) not null,
     id_c int not null,
-    img_p_t text default "",
+    img_p_t text ,
     img_p_b blob,
-    primary key(id_c),
+    primary key(id_p),
     constraint fk_category_product
         foreign key (id_c) references category(id_c)
 );
@@ -33,7 +41,6 @@ insert into category (name_c,img_c_t) values
 ('Consoles','https://cdn-icons-png.freepik.com/256/13007/13007831.png?semt=ais_white_label');
 
 insert into product (name_p,id_c,img_p_t) values
--- TVs (1)
 ('Samsung QLED 4K', 1, 'https://img.freepik.com/free-photo/modern-tv-screen-realistic-living-room_23-2149712019.jpg'),
 ('LG OLED C3', 1, 'https://img.freepik.com/free-photo/modern-tv-living-room-design_23-2149872390.jpg'),
 ('Sony Bravia XR', 1, 'https://img.freepik.com/free-photo/modern-flat-screen-tv-entertainment_23-2149680129.jpg'),
@@ -44,8 +51,6 @@ insert into product (name_p,id_c,img_p_t) values
 ('Sharp Aquos 55"', 1, 'https://img.freepik.com/free-photo/smart-tv-with-apps_23-2149274511.jpg'),
 ('Samsung The Frame', 1, 'https://img.freepik.com/free-photo/tv-modern-decor_23-2149006023.jpg'),
 ('LG NanoCell 4K', 1, 'https://img.freepik.com/free-photo/television-set-room_23-2149914142.jpg'),
-
--- Smartphones (2)
 ('iPhone 15 Pro', 2, 'https://img.freepik.com/free-photo/new-smartphone-model-front-view_23-2149385991.jpg'),
 ('Samsung Galaxy S23', 2, 'https://img.freepik.com/free-photo/modern-smartphone-mockup_23-2149375267.jpg'),
 ('Google Pixel 8', 2, 'https://img.freepik.com/free-photo/modern-smartphone-touchscreen_23-2149375165.jpg'),
@@ -56,8 +61,6 @@ insert into product (name_p,id_c,img_p_t) values
 ('Huawei P60 Pro', 2, 'https://img.freepik.com/free-photo/modern-phone-mockup_23-2149375200.jpg'),
 ('Nothing Phone 2', 2, 'https://img.freepik.com/free-photo/new-modern-phone_23-2149375260.jpg'),
 ('Asus Zenfone 10', 2, 'https://img.freepik.com/free-photo/black-smartphone-isolated_23-2149375233.jpg'),
-
--- PCs (3)
 ('Dell Optiplex 7000', 3, 'https://img.freepik.com/free-photo/computer-desktop-office_23-2148880423.jpg'),
 ('HP Envy Tower', 3, 'https://img.freepik.com/free-photo/office-desktop-setup_23-2148880551.jpg'),
 ('iMac 24"', 3, 'https://img.freepik.com/free-photo/apple-imac-computer_23-2148880573.jpg'),
@@ -68,8 +71,6 @@ insert into product (name_p,id_c,img_p_t) values
 ('NZXT H710 Build', 3, 'https://img.freepik.com/free-photo/custom-gaming-computer_23-2149051004.jpg'),
 ('Corsair One Compact', 3, 'https://img.freepik.com/free-photo/sleek-pc-build_23-2149065100.jpg'),
 ('HP Omen 45L', 3, 'https://img.freepik.com/free-photo/high-performance-gaming-pc_23-2149051002.jpg'),
-
--- Laptops (4)
 ('MacBook Air M2', 4, 'https://img.freepik.com/free-photo/open-laptop-desk_23-2148880344.jpg'),
 ('ASUS Vivobook 15', 4, 'https://img.freepik.com/free-photo/laptop-gray-table_23-2148880364.jpg'),
 ('Dell XPS 13', 4, 'https://img.freepik.com/free-photo/modern-laptop-desk_23-2148880419.jpg'),
@@ -80,8 +81,6 @@ insert into product (name_p,id_c,img_p_t) values
 ('MSI GS66 Stealth', 4, 'https://img.freepik.com/free-photo/black-laptop-modern_23-2148880400.jpg'),
 ('Gigabyte Aero 16', 4, 'https://img.freepik.com/free-photo/laptop-modern-table_23-2148880380.jpg'),
 ('Samsung Galaxy Book3', 4, 'https://img.freepik.com/free-photo/modern-laptop-living-room_23-2148880372.jpg'),
-
--- Consoles (5)
 ('PlayStation 5', 5, 'https://img.freepik.com/free-photo/sony-playstation-console_23-2149116050.jpg'),
 ('Xbox Series X', 5, 'https://img.freepik.com/free-photo/xbox-console_23-2149074120.jpg'),
 ('Nintendo Switch OLED', 5, 'https://img.freepik.com/free-photo/nintendo-switch-console_23-2149116022.jpg'),

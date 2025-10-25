@@ -80,3 +80,128 @@ docker exec -i mysql-db mysql -u user -p testdb < /ruta/al/archivo/tablas.sql
 
 
     ---------------------
+
+
+    comadnos que hice 
+    cd /var/www/
+  316  ls
+  317  nano docker-compose.yml
+  318  docker-compose up mysql
+  319  ls
+  320  docker compose
+  321  docker compose version
+  322  clear
+  323  docker compose version
+  324  docker compose up mysql
+  325  docker ps
+  326  docker compose down -v
+  327  docker compose up mysql
+  328  docker compose up python_app
+  329  a
+  330  ls
+  331  cd build/
+  332  ls
+  333  cd ..
+  334  rm build/
+  335  rm -d build/
+  336  ls
+  337  cd ..
+  338  ls
+  339  cd /media/nico-hi/1tera_2/python
+  340  clear
+  341  docker compose up python_app
+  342  docker list
+  343  clear
+  344  docker compose run python_app
+  345  docker compose run python_app
+  346  docker compose run python_app
+  347  clear
+  348  docker compose run python_app
+  349  docker compose run python_app
+  350  clear
+  351  docker compose run python_app
+  352  docker compose run python_app
+  353  docker compose run python_app
+  354  docker compose run python_app
+  355  git clone https://github.com/Nico-hi/Iniciando-python.git
+  356  clear
+  357  cd ..
+  358  ls
+  359  cd /media/nico-hi/1tera_2/
+  360  ls
+  361  git clone https://github.com/Nico-hi/Iniciando-python.git
+  362  docker compose run --rm -it python_app bash
+  363  python calculadora/calculadora.py
+  364  cd /media/nico-hi/1tera_2/Iniciando-python
+  365  python calculadora/calculadora.py
+  366  python /calculadora/calculadora.py
+  367  docker compose run --rm -it python_app bash
+  368  docker compose up python_app
+  369  cd /media/nico-hi/1tera_2/Iniciando-python
+  370  docker compose up python_app
+  371  docker compose run --rm -it python_app bash
+  372  clear
+  373  cd /var/www/TiendaPHP/
+  374  docker compose list
+  375  docker compose volumes
+  376  docker compose start mysql
+  377  docker compose up mysql
+  378  docker ls
+  379  docker ps
+  380  docker ps -a
+  381  docker stop mysql-db
+  382  docker stop mysql-db
+  383  docker start mysql-db
+  384      mysql -h 127.0.0.1 -P 3306 -u user -p
+  385      mysql -h 127.0.0.1 -P 3306 -u user -p
+  386      mysql -h 127.0.0.1 -P 3306 -u root -p
+  387  docker exec -i mysql-db mysql -u user -p testdb < JDBC/BBDD.sql
+  388  docker exec -i mysql-db mysql -u root -p testdb < JDBC/BBDD.sql
+  389  docker exec -i mysql-db mysql -u root -p rootpass < JDBC/BBDD.sql
+  390      mysql -h 127.0.0.1 -P 3306 -u root -p
+  391      mysql -h 127.0.0.1 -P 3306 -u root -p
+  392      mysql -h 127.0.0.1 -P 3306 -u root -p
+  393      mysql -h 127.0.0.1 -P 3306 -u root -p
+  394  clear
+  395      mysql -h 127.0.0.1 -P 3306 -u root -p
+  396      mysql -h 127.0.0.1 -P 3306 -u root -p
+  397  clear
+  398      mysql -h 127.0.0.1 -P 3306 -u root -p
+  399      mysql -h 127.0.0.1 -P 3306 -u root -p
+  400  clear
+  401      mysql -h 127.0.0.1 -P 3306 -u root -p
+  402  history
+root@Nico-hi:~# 
+
+
+dokcer externo
+version: '3.9'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  postgres:
+    image: postgres:15
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: testdb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: userpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  mysql_data:
+  postgres_data:

@@ -5,12 +5,13 @@ body {
 
 .productos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
     gap: 24px;
     max-width: 1320px;
     margin: 30px auto 0 auto;
     padding: 0 18px;
 }
+
 
 .producto-card {
     background: #fff;

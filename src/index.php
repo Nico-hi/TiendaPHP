@@ -18,22 +18,23 @@ include '../JDBC/conexion.php';
 <body>
     <h1>TiendaVirtual</h1>
 
-    <div>
-        <?php
+    <main>
+        <div>
+            <?php
 /*
-        $sql1="select * from category;";
-        $result1=$con->query($sql1);
-        if($result1 -> num_rows > 0){
+$sql1="select * from category;";
+$result1=$con->query($sql1);
+if($result1 -> num_rows > 0){
             while($fila + $result1 -> fetch_assoc()){
                 echo "{$fila['id_c']}";
-            }}
-*/ 
-        $sql1 = "select img_c_t from category where id_c=1 and name_c='TVs'";
-        $result1 = $con->query($sql1);
-        $url1 = $result1->fetch_assoc();
-        echo "<a href='devices.php?category=TVs'>
-        <h3>TVs / Televisores</h3>
-        <img src='$url1[img_c_t]'>
+                }}
+                */ 
+                $sql1 = "select img_c_t from category where id_c=1 and name_c='TVs'";
+                $result1 = $con->query($sql1);
+                $url1 = $result1->fetch_assoc();
+                echo "<a href='devices.php?category=TVs'>
+                <h3>TVs / Televisores</h3>
+                <img src='$url1[img_c_t]'>
         </a>";
         
         ?>
@@ -50,13 +51,13 @@ include '../JDBC/conexion.php';
         </a>";
         ?>
     </div>
-
+    
     <div>
         <?php
         $sql3 = "select img_c_t from category where id_c=3 and name_c='PCs'";
         $result3 = $con->query($sql3);
         $url3 = $result3->fetch_assoc();
-
+        
         echo "<a href='devices.php?category=PCs'>
         <h3>PCs / Ordenadores de escritorio</h3>
         <img src='$url3[img_c_t]'>
@@ -69,27 +70,28 @@ include '../JDBC/conexion.php';
         $sql4 = "select img_c_t from category where id_c=4 and name_c='Laptops'";
         $result4 = $con->query($sql4);
         $url4 = $result4->fetch_assoc();
-
+        
         echo "<a href='devices.php?category=Laptops'>
         <h3>Laptops / Portatiles</h3>
         <img src='$url4[img_c_t]'>
         </a>";
         ?>
     </div>
-
+    
     <div>
         <?php
         $sql5 = "select img_c_t from category where id_c=5 and name_c='Consoles'";
         $result5 = $con->query($sql5);
         $url5 = $result5->fetch_assoc();
-
+        
         echo "<a href='devices.php?category=Consoles'>
         <h3>Consoles / Consolas</h3>
         <img src='$url5[img_c_t]'>
         </a>";
         ?>
     </div>
-
+</main>
+    
 </body>
 
 </html>

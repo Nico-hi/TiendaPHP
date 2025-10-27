@@ -18,9 +18,9 @@ include '../JDBC/conexion.php';
     <?php
     $category=$_GET['category'];
     $condition="";
-        if($category=="TVs"){
-            $condition=" where id_c = 1";
-            echo"<h1 style='fonst-aling:center;' >Te encuentras en la categoria de $category / Televisores";
+    if($category=="TVs"){
+        $condition=" where id_c = 1";
+        echo"<h1 style='fonst-aling:center;' >Te encuentras en la categoria de $category / Televisores";
         }elseif ($category=="Smartphones") {
             $condition="where id_c = 2";
             echo"<h1 style='fonst-aling:center;' >Te encuentras en la categoria de $category / Movíles";
@@ -34,40 +34,30 @@ include '../JDBC/conexion.php';
             $condition="where id_c = 5";
             echo"<h1 style='fonst-aling:center;' >Te encuentras en la categoria de $category / Consolas";
         }
+        ?>
 
+<main class="productos-grid">
+        <?php
         $sql="select * from product $condition";
         $result=$con->query($sql);
         
         if($result->num_rows>0){
-            // si el numero de filas es menor que 0 entramos al bucle
             while($row = $result->fetch_assoc() ){
-                // el bucle funcionara mientras que $row guarde el resultado de $result->fetch_assoc()
-                // el cual nos da un array "clave:valor" de valores que contienen la consulta pero solo d euna fila
                 echo "
                 <div class='producto-card'>
-                    <img src='".$row['img_p_t']."' alt='".$row['name_p']."' />
+                <img src='".$row['img_p_t']."' alt='".$row['name_p']."' />
                     <div class='card-info'>
-                        <h3>".$row['id_p']." .- ".$row['name_p']."</h3>
-                        <p class='card-price'>".$row['price_p']." €</p>
-                        <button class='card-btn'>Comprar</button>
+                    <h3>".$row['id_p']." .- ".$row['name_p']."</h3>
+                    <p class='card-price'>".$row['price_p']." €</p>
+                    <button class='card-btn'>Comprar</button>
                     </div>
-                </div>
+                    </div>
                 ";
-                /*echo "
-                <div>
-                    <section>
-                        <img src='".$row['img_p_t']."' alt='".$row['name_p']."' title='".$row['name_p']."' >
-                    </section>
-                    <section>
-                        <h2>".$row['id_p']." .- ".$row['name_p']."</h2>
-                    </section>
-                </div>                
-                ";
-            */
             }
         }
-
-    ?>
+        
+        ?>
+</main>
     
 </body>
 </html>

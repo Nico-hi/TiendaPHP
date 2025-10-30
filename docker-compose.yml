@@ -16,7 +16,7 @@ services:                 # Sección principal: cada servicio es un contenedor
 
   # ---- Servicio de PostgreSQL ----
   postgres:               # Nombre del servicio (usas este nombre en los comandos)
-    image: postgres:latest    # Imagen oficial de PostgreSQL versión 15
+    image: postgres:18    # Imagen oficial de PostgreSQL versión 15
     container_name: postgres-db  # Nombre visible del contenedor en tu sistema
     environment:
       POSTGRES_DB: testdb         # Nombre de base de datos inicial que se creará
@@ -25,7 +25,7 @@ services:                 # Sección principal: cada servicio es un contenedor
     ports:
       - "5432:5432"        # Expone el puerto 5432 (PostgreSQL) a tu máquina
     volumes:
-      - postgres_data:/var/lib/postgresql/data # Persiste los datos en un volumen
+      - postgres_data:/var/lib/postgresql # Persiste los datos en un volumen
 
 volumes:                   # Define los volúmenes que persisten los datos
   mysql_data:              # Volumen para la base de datos de MySQL

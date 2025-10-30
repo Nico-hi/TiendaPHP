@@ -1,0 +1,51 @@
+
+header {
+    background-color: rgb(102, 198, 228);
+    padding: 30px 10vw 40px 10vw; 
+    border-radius: 0 0 100px 100px;
+    box-sizing: border-box;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.07); /* sombra sutil */
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+header nav section {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+header nav a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 10px;
+    transition: 0.2s, color 0.2s;
+}
+
+header nav a:hover {
+    background: #e0eafc;
+    transform: scale(1.5);
+    transition: 0.2s, color 0.2s;
+
+}
+
+header form label{
+    padding-left:3px ;
+    padding-right:3px ;
+
+}
+header nav section form label p {
+    display: inline-flex;
+    gap: 18px;
+    align-items: center;
+}
+
+
+

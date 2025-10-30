@@ -1,9 +1,9 @@
 create database if not exists virtual_store;
 use virtual_store;
-
-create table user(
+create table user_data(
     id_u int auto_increment,
     name_u varchar(30) not null,
+    nickname_u varchar(30) not null,
     lastname_u varchar(30),
     email varchar(40) not null,
     passwd_u varchar(225) not null,
@@ -42,7 +42,7 @@ insert into category (name_c,img_c_t) values
 ('Consoles','https://cdn-icons-png.freepik.com/256/13007/13007831.png?semt=ais_white_label');
 
 truncate table product;
-select * from product p ;
+select * from product p order by price_p desc;
 INSERT INTO product (name_p, price_p, id_c, img_p_t) VALUES
 ('Samsung QLED 4K', 849.99, 1, 'https://thumb.pccomponentes.com/w-530-530/articles/1092/10928314/196-samsung-q7f-qe85q7faau-85-qled-4k-ultra-hd-smart-tv-hdr-wifi-negro.jpg'),
 ('LG OLED C3', 1249.00, 1, 'https://www.pngegg.com/en/png-wruar-download-grunge-devices-s-black-panasonic-crt-tv'),
@@ -94,3 +94,14 @@ INSERT INTO product (name_p, price_p, id_c, img_p_t) VALUES
 ('Retro NES Classic', 79.99, 5, 'https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/en_US/products/nes-classic-edition/nes-classic-front.png'),
 ('PS Vita', 179.99, 5, 'https://www.playstation.com/content/dam/global_pdc/en/corporate/hardware/ps-vita/ps-vita-front.png'),
 ('Game Boy Advance SP', 99.99, 5, 'https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/en_US/products/game-boy-advance-sp/gba-sp-front.png');
+
+insert into user_data (name_u,nickname_u,lastname_u,email,passwd_u) values
+('user_name_default1','user_nickname_default1','user_lastname_default1','email_default1@gmail.com','$2y$10$2x5GnFIUbEkBE0fTEUUqWeuxtllD7wAR56Wkb7rK.hooTaWdnP3Mi');
+
+
+
+
+select * from user_data ud  ;
+
+
+

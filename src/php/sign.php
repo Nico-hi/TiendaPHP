@@ -30,7 +30,7 @@ $profileLink = isset($_SESSION['id_u']) ? './profile.php' : './sign.php?action=i
 
             </section>
             <section>
-                <h2>me da pereza que desapareca si ya estas logueado....</h2>
+                <h2>me da pereza que desapareca si ya estas logueado.... => </h2>
                 <a href="./sign.php?action=in">sign in</a>
                 <a href="./sign.php?action=up">sign up</a>
             </section>

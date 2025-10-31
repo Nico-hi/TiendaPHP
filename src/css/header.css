@@ -23,6 +23,12 @@ header nav section {
     gap: 18px;
     align-items: center;
 }
+header nav section:nth-child(2) {
+    display: inline;
+    text-align: center;
+    gap: 18px;
+    align-items: center;
+}
 
 header nav a {
     text-decoration: none;

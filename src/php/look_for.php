@@ -33,9 +33,10 @@ $category=$_GET['category']??"All_devices";
 
             </section>
             <section>
+                <h3><u>busqueda avanzada</u></h3>
                 <form action="look_for.php" method="get">
                     <label for="name">Nombre : 
-                        <input type="search" name="name" id="name">
+                        <input type="search" name="name" id="name" required>
                     </label>
                     <label for="price">Precio minimo : <p id="precio_salida"> 0 </p>
                         <input type="range" value="0" min="0" max="3000" name="price" id="price" oninput="document.getElementById('precio_salida').textContent = ' '+this.value+' '">

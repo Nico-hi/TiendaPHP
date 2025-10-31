@@ -30,7 +30,7 @@ $profileLink = isset($_SESSION['id_u']) ? './profile.php' : './sign.php?action=i
 
             </section>
             <section>
-                <h2>me da pereza que desapareca si ya estas logueado.... => </h2>
+                <h2>me da pereza que desapareca si ya estas logueado...</h2>
                 <a href="./sign.php?action=in">sign in</a>
                 <a href="./sign.php?action=up">sign up</a>
             </section>
@@ -54,7 +54,7 @@ $profileLink = isset($_SESSION['id_u']) ? './profile.php' : './sign.php?action=i
                             header("Location: ./profile.php");
                         }
                     }else{
-                        echo"something is wrong <br>Try again.";
+                        echo"<script>alert('something is wrong.Try again.')</script>";
                     }
 
                 } elseif ($action_sign == "up") {
@@ -79,14 +79,14 @@ $profileLink = isset($_SESSION['id_u']) ? './profile.php' : './sign.php?action=i
                             if($result){
                                 echo'It works, now you can sign in xD';
                             }else{
-                                echo 'try again later';
+                                echo "<script>alert('try again later')</script>";
                             }
 
                         }else{
                             echo "your email or nickname is already used... use another one";
                         }
                         } else {
-                        echo "❌ the code is wrong try again";
+                        echo "<script>alert('❌ the code is wrong try again')</script>";
                     }
                 }
             }
@@ -118,7 +118,7 @@ $profileLink = isset($_SESSION['id_u']) ? './profile.php' : './sign.php?action=i
 
                     $caracters = "abcdefghijklmnopqrstuvwxyz1234567890";
                     $str_rand = "";
-                    if ($_SERVER['REQUEST_METHOD'] !== 'POST' && $action_sign === "up") {
+                    if (($_SERVER['REQUEST_METHOD'] !== 'POST' || $_SERVER['REQUEST_METHOD'] === 'POST')&& $action_sign === "up") {
                         function RandNum()
                         {
                             return rand(0, 35);
@@ -148,7 +148,7 @@ $profileLink = isset($_SESSION['id_u']) ? './profile.php' : './sign.php?action=i
                         </label>
 
                         <label for='email_user'>Email : 
-                        <input type='email_user' name='email_user' id='email_user' autocomplete='off' required>
+                        <input type='email' name='email_user' id='email_user' autocomplete='off' required>
                         </label>
                         
                         <label for='passwd_user'>Password : 

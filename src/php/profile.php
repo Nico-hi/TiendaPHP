@@ -23,9 +23,13 @@ $profileLink = isset($_SESSION['id_u']) ? './profile.php' : './sign.php?action=i
                 <a href="./category.php">category</a>
             </section>
             <section>
-                <a href="./sign.php?action=in">sign in</a>
-                <a href="./sign.php?action=up">sign up</a>
-
+                <?php if (isset($_SESSION['id_u'])): ?>
+                    <a href="./cart.php"><img src="https://png.pngtree.com/png-clipart/20230504/original/pngtree-shopping-cart-line-icon-png-image_9137796.png" alt="carrito" width="30"></a>
+                    <a href="./close_sesion.php">Log out</a>
+                <?php else: ?>
+                    <a href="./sign.php?action=in">sign in</a>
+                    <a href="./sign.php?action=up">sign up</a>
+                <?php endif;?>
             </section>
 
         </nav>

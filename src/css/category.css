@@ -54,7 +54,7 @@ h3 {
 }
 
 /* Imágenes de categoría */
-img {
+div  img {
     width: 160px;
     height: 160px;
     object-fit: contain;

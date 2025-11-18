@@ -27,10 +27,43 @@ include '../../JDBC/conexion.php';
                 <a href="<?php echo $profileLink; ?>">Profile</a>
                 <a href="./category.php">Category</a>
             </section>
-
             <section>
-                <a href="./sign.php?action=in">sign in</a>
-                <a href="./sign.php?action=up">sign up</a>
+                <h3><u>busqueda avanzada</u></h3>
+                <form action="./look_for.php" method="get">
+                    <label for="name">Nombre :
+                        <input type="search" name="name" id="name" value="" >
+                    </label>
+                    <label for="price">Precio minimo: <p id="precio_salida"> 0 </p>
+                        <input type="range" value="0" min="0" max="3000" name="price" id="price"
+                            oninput="document.getElementById('precio_salida').textContent = ' '+this.value+' '" required>
+                    </label>
+                    <label for="category">
+                        <?php
+                        $select_option = "
+                        <select name='category' id='category'>                     
+                            <option >seleciona una opcion ...</option>
+                            <option value='TVs'>TVs / Televisores</option>
+                            <option value='Smartphones'>Smartphones / Movíles</option>
+                            <option value='PCs'>PCs / Ordenadores de escritorio</option>
+                            <option value='Laptops'>Laptops / Portatiles</option>
+                            <option value='Consoles'>Consoles / Consolas</option>
+                        </select>";
+                        echo $select_option;
+                        ?>
+                    </label>
+                    <input type="reset" value="limpiar"
+                        onclick="document.querySelector('form label input[type=\'range\']').value=0; document.querySelector('form label #precio_salida').textContent=0;">
+                    <input type="submit" value="buscar">
+                </form>
+            </section>
+            <section>
+                <?php if (isset($_SESSION['id_u'])): ?>
+                    <a href="./cart.php"><img src="https://png.pngtree.com/png-clipart/20230504/original/pngtree-shopping-cart-line-icon-png-image_9137796.png" alt="carrito" width="30"></a>
+                    <a href="./close_sesion.php">Log out</a>
+                <?php else: ?>
+                    <a href="./sign.php?action=in">sign in</a>
+                    <a href="./sign.php?action=up">sign up</a>
+                <?php endif;?>
             </section>
 
         </nav>

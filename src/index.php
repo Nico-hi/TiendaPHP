@@ -27,8 +27,7 @@ $condition = " where 1";
     <header>
         <nav>
             <section>
-                <a href="./">Home</a>
-                <!-- tambien se puede poner el ./index.php pero en la parte de la ruta se ve feo... asi que lo deje asi-->
+                <a href="./">Home</a><!-- tambien se puede poner el ./index.php pero en la parte de la ruta se ve feo... asi que lo deje asi-->
                 <a href="<?php echo $profileLink; ?>">Profile</a>
                 <a href="./php/category.php">category</a>
             </section>
@@ -36,11 +35,11 @@ $condition = " where 1";
                 <h3><u>busqueda avanzada</u></h3>
                 <form action="./php/look_for.php" method="get">
                     <label for="name">Nombre :
-                        <input type="search" name="name" id="name" value="" required>
+                        <input type="search" name="name" id="name" value="" >
                     </label>
                     <label for="price">Precio minimo: <p id="precio_salida"> 0 </p>
                         <input type="range" value="0" min="0" max="3000" name="price" id="price"
-                            oninput="document.getElementById('precio_salida').textContent = ' '+this.value+' '">
+                            oninput="document.getElementById('precio_salida').textContent = ' '+this.value+' '" required>
                     </label>
                     <label for="category">
                         <?php
@@ -79,8 +78,13 @@ $condition = " where 1";
                 </form>
             </section>
             <section>
-                <a href="./php/sign.php?action=in">sign in</a>
-                <a href="./php/sign.php?action=up">sign up</a>
+                <?php if (isset($_SESSION['id_u'])): ?>
+                    <a href="./php/cart.php"><img src="https://png.pngtree.com/png-clipart/20230504/original/pngtree-shopping-cart-line-icon-png-image_9137796.png" alt="carrito" width="30"></a>
+                    <a href="./php/close_sesion.php">Log out</a>
+                <?php else: ?>
+                    <a href="./php/sign.php?action=in">sign in</a>
+                    <a href="./php/sign.php?action=up">sign up</a>
+                <?php endif;?>
             </section>
 
         </nav>
@@ -100,7 +104,7 @@ $condition = " where 1";
                     <div class='card-info'>
                     <h3>" . $row['id_p'] . " .- " . $row['name_p'] . "</h3>
                     <p class='card-price'>" . $row['price_p'] . " €</p>
-                    <button class='card-btn'>Comprar</button>
+                    <a class='card-btn' href='./php/shopping_cart.php?id_p=".$row['id_p']."&&price_p=". $row['price_p'] ."'>Comprar</a>
                     </div>
                     </div>
                 ";

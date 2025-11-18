@@ -2,6 +2,7 @@
 session_start();
 $action_sign = $_GET['action'];
 $profileLink = isset($_SESSION['id_u']) ? './profile.php' : './sign.php?action=in';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,9 +31,13 @@ $profileLink = isset($_SESSION['id_u']) ? './profile.php' : './sign.php?action=i
 
             </section>
             <section>
-                <h2>me da pereza que desapareca si ya estas logueado...</h2>
-                <a href="./sign.php?action=in">sign in</a>
-                <a href="./sign.php?action=up">sign up</a>
+                <?php if (isset($_SESSION['id_u'])): ?>
+                    <a href="./cart.php"><img src="https://png.pngtree.com/png-clipart/20230504/original/pngtree-shopping-cart-line-icon-png-image_9137796.png" alt="carrito" width="30"></a>
+                    <a href="./close_sesion.php">Log out</a>
+                <?php else: ?>
+                    <a href="./sign.php?action=in">sign in</a>
+                    <a href="./sign.php?action=up">sign up</a>
+                <?php endif;?>
             </section>
 
         </nav>
@@ -50,8 +55,11 @@ $profileLink = isset($_SESSION['id_u']) ? './profile.php' : './sign.php?action=i
                     $row=$result->fetch_assoc();
                     if($result->num_rows === 1){
                         if(password_verify($passwd_user,$row['passwd_u'])){
-                            $_SESSION['id_u']=$row['id_u'];
-                            header("Location: ./profile.php");
+                        $sql1="select * from cart where id_u =".$row['id_u']." limit 1";
+                        $result1= $con->query($sql);
+                        $row1=$result1->fetch_assoc();
+                        $_SESSION['id_u']=$row['id_u'];
+                        header("Location: ./profile.php");
                         }
                     }else{
                         echo"<script>alert('something is wrong.Try again.')</script>";
@@ -76,7 +84,14 @@ $profileLink = isset($_SESSION['id_u']) ? './profile.php' : './sign.php?action=i
                             values ('$name_user','$nickname_user','$lastname_user','$email_user','$passwd_user_h');";
                             $result=$con->query($sql);
 
-                            if($result){
+                            $sql2="select id_u from user_data where(email = '$email_user')";
+                            $result2=$con->query($sql2);
+                            $id_u=$result2->fetch_assoc();
+                            echo $id_u;
+                            $sql3="insert into cart (id_u) values (".$id_u.")";
+                            $result3=$con->query($sql2);
+                            
+                            if($result && $result2 && $result3){
                                 echo'It works, now you can sign in xD';
                             }else{
                                 echo "<script>alert('try again later')</script>";

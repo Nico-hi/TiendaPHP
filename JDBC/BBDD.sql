@@ -32,6 +32,17 @@ create table product(
     constraint fk_category_product
         foreign key (id_c) references category(id_c)
 );
+CREATE TABLE carritos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL references user_data(id_u)
+);
+
+CREATE TABLE carrito_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    carrito_id INT NOT NULL references carritos(id),
+    producto_id INT NOT NULL references product(id_p),
+    cantidad INT NOT NULL
+);
 
 
 insert into category (name_c,img_c_t) values 
@@ -100,10 +111,16 @@ insert into user_data (name_u,nickname_u,lastname_u,email,passwd_u) values
 
 -- la passdw es user_password_default1
 
-select * from product and (name_p like '%A%');
-SELECT * from product p ;
-select * from user_data ud  ;
-update user_data set name_u='manu' where id_u=2;
+INSERT INTO carrito (usuario_id, producto_id, cantidad)
+VALUES (1, 1, 1);
 
-select * from user_data where (nickname_u = 'email_default1@gmail.com') or (email = 'email_default1@gmail.com');
+insert into carritos (usuario_id) values (1);
+SELECT * from category c ;
+SELECT * from product ;
+SELECT * from user_data ;
+select * from carritos;
+SELECT * from carrito_items;
 
+SELECT ci.carrito_id ,p.name_p,p.price_p , img_p_t, count(ci.cantidad) from carrito_items ci  join product p on ci.producto_id = p.id_p 
+	where ci.carrito_id = 3
+	GROUP by ci.carrito_id,p.name_p,p.price_p, img_p_t;

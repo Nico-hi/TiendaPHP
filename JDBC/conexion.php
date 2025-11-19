@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 $name_server="mysql";
 $ip_server="127.0.0.1";//localhost
 $user_server="root";
-$passwd_server="rootpass";
+$passwd_server="Kawaii_456";
 $name_bbdd="virtual_store";
 // este es el problema
 $con=new mysqli($ip_server,$user_server,$passwd_server,$name_bbdd);

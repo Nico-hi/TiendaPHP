@@ -1,0 +1,63 @@
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 16px 60px 16px;
+}
+
+.producto-card {
+    background: #ffffffcc;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px #68c6e480;
+    margin-bottom: 30px;
+    padding: 28px 20px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    transition: box-shadow .2s, transform .2s;
+    border: 1px solid #b0dfff;
+}
+.producto-card:hover {
+    box-shadow: 0 8px 32px #68c6e4cc;
+    transform: translateY(-3px) scale(1.01);
+}
+
+.producto-card img {
+    width: 108px;
+    height: 108px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid #68c6e4;
+    background: #e0eafc;
+}
+
+.card-info {
+    flex: 1;
+}
+.card-info h3 {
+    margin: 0 0 12px 0;
+    color: #0089a6;
+    font-size: 1.22rem;
+    font-weight: 700;
+}
+.card-info .card-price {
+    margin: 0;
+    font-size: 1.05rem;
+    color: #467FAA;
+    letter-spacing: 0.04em;
+}
+
+@media(max-width: 700px) {
+    main {
+        padding: 0 5px;
+    }
+    .producto-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px 8px;
+        gap: 18px;
+    }
+    .producto-card img {
+        width: 74px;
+        height: 74px;
+    }
+}

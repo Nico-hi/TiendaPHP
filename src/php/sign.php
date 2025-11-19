@@ -32,12 +32,14 @@ $profileLink = isset($_SESSION['id_u']) ? './profile.php' : './sign.php?action=i
             </section>
             <section>
                 <?php if (isset($_SESSION['id_u'])): ?>
-                    <a href="./cart.php"><img src="https://png.pngtree.com/png-clipart/20230504/original/pngtree-shopping-cart-line-icon-png-image_9137796.png" alt="carrito" width="30"></a>
+                    <a href="./cart.php"><img
+                            src="https://png.pngtree.com/png-clipart/20230504/original/pngtree-shopping-cart-line-icon-png-image_9137796.png"
+                            alt="carrito" width="30"></a>
                     <a href="./close_sesion.php">Log out</a>
                 <?php else: ?>
                     <a href="./sign.php?action=in">sign in</a>
                     <a href="./sign.php?action=up">sign up</a>
-                <?php endif;?>
+                <?php endif; ?>
             </section>
 
         </nav>
@@ -50,57 +52,60 @@ $profileLink = isset($_SESSION['id_u']) ? './profile.php' : './sign.php?action=i
                 if ($action_sign == "in") {
                     $log_user = $_POST['log_user'];
                     $passwd_user = $_POST['passwd_user'];
-                    $sql="select id_u,passwd_u from user_data where (nickname_u = '".$log_user."') or (email = '".$log_user."') limit 1";
-                    $result= $con->query($sql);
-                    $row=$result->fetch_assoc();
-                    if($result->num_rows === 1){
-                        if(password_verify($passwd_user,$row['passwd_u'])){
-                        $sql1="select * from cart where id_u =".$row['id_u']." limit 1";
-                        $result1= $con->query($sql);
-                        $row1=$result1->fetch_assoc();
-                        $_SESSION['id_u']=$row['id_u'];
-                        header("Location: ./profile.php");
+                    $sql = "select id_u,passwd_u from user_data where (nickname_u = '" . $log_user . "') or (email = '" . $log_user . "') limit 1";
+                    $result = $con->query($sql);
+                    $row = $result->fetch_assoc();
+                    if ($result->num_rows === 1) {
+                        if (password_verify($passwd_user, $row['passwd_u'])) {
+                            $sql1 = "select * from carritos where usuario_id =" . $row['id_u'] . " limit 1";
+                            $result1 = $con->query($sql1);
+                            $row1 = $result1->fetch_assoc();
+                            $_SESSION['id_c'] = $row1['id'];
+                            $_SESSION['id_u'] = $row['id_u'];
+                            header("Location: ./profile.php");
                         }
-                    }else{
-                        echo"<script>alert('something is wrong.Try again.')</script>";
+                    } else {
+                        echo "<script>alert('something is wrong.Try again.')</script>";
                     }
 
                 } elseif ($action_sign == "up") {
                     $name_user = $_POST['name_user'];
                     $lastname_user = $_POST['lastname_user'];
-                    $nickname_user =$_POST['nickname_user'];
+                    $nickname_user = $_POST['nickname_user'];
                     $email_user = $_POST['email_user'];
                     $passwd_user = $_POST['passwd_user'];
                     $confirm_passwd_user = $_POST['confirm_passwd_user'];
                     $verify_code = $_POST['verify_code'];
 
                     if ($_SESSION['verify_code'] === $verify_code) {
-                        $sql_verify="select * from user_data where (nickname_u = '$nickname_user') or (email = '$email_user')";
-                        $result_verify=$con->query($sql_verify);
-                        if($result_verify->num_rows!=1){
-                            $passwd_user_h=password_hash($passwd_user,PASSWORD_DEFAULT);
+                        $sql_verify = "select * from user_data where (nickname_u = '$nickname_user') or (email = '$email_user')";
+                        $result_verify = $con->query($sql_verify);
+                        if ($result_verify->num_rows != 1) {
+                            $passwd_user_h = password_hash($passwd_user, PASSWORD_DEFAULT);
                             unset($_SESSION['verify_code']); // limpiar la variable que guardamos después de usar/ser correcta
-                            $sql="insert into user_data (name_u,nickname_u,lastname_u,email,passwd_u) 
+                            $sql = "insert into user_data (name_u,nickname_u,lastname_u,email,passwd_u) 
                             values ('$name_user','$nickname_user','$lastname_user','$email_user','$passwd_user_h');";
-                            $result=$con->query($sql);
+                            $result = $con->query($sql);
 
-                            $sql2="select id_u from user_data where(email = '$email_user')";
-                            $result2=$con->query($sql2);
-                            $id_u=$result2->fetch_assoc();
-                            echo $id_u;
-                            $sql3="insert into cart (id_u) values (".$id_u.")";
-                            $result3=$con->query($sql2);
-                            
-                            if($result && $result2 && $result3){
-                                echo'It works, now you can sign in xD';
-                            }else{
-                                echo "<script>alert('try again later')</script>";
+                            $sql2 = "select id_u from user_data where(email = '$email_user')";
+                            $result2 = $con->query($sql2);
+                            if ($result2 && $row2 = $result2->fetch_assoc()) {
+                                $id_u = $row2['id_u'];
+
+                                // Crear el carrito vacío para ese usuario
+                                $sql3 = "INSERT INTO carritos (usuario_id) VALUES ($id_u)";
+                                $result3 = $con->query($sql3);
+                                if ($result && $result2 && $result3) {
+                                    echo 'It works, now you can sign in xD';
+                                } else {
+                                    echo "<script>alert('try again later')</script>";
+                                }
                             }
 
-                        }else{
+                        } else {
                             echo "your email or nickname is already used... use another one";
                         }
-                        } else {
+                    } else {
                         echo "<script>alert('❌ the code is wrong try again')</script>";
                     }
                 }
@@ -133,7 +138,7 @@ $profileLink = isset($_SESSION['id_u']) ? './profile.php' : './sign.php?action=i
 
                     $caracters = "abcdefghijklmnopqrstuvwxyz1234567890";
                     $str_rand = "";
-                    if (($_SERVER['REQUEST_METHOD'] !== 'POST' || $_SERVER['REQUEST_METHOD'] === 'POST')&& $action_sign === "up") {
+                    if (($_SERVER['REQUEST_METHOD'] !== 'POST' || $_SERVER['REQUEST_METHOD'] === 'POST') && $action_sign === "up") {
                         function RandNum()
                         {
                             return rand(0, 35);
@@ -187,8 +192,8 @@ $profileLink = isset($_SESSION['id_u']) ? './profile.php' : './sign.php?action=i
                     ";
                 }
                 ?>
-                </form>
-            
+            </form>
+
         </div>
     </main>
 </body>
